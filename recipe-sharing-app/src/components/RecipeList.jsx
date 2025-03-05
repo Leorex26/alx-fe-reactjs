@@ -15,6 +15,9 @@ const RecipeList = () => {
           <p>{recipe.description}</p>
           {/* Add a Link to navigate to the RecipeDetails page */}
           <Link to={`/recipe/${recipe.id}`}>View Recipe</Link>
+          <Link to="/add-recipe">
+          <button>Add New Recipe</button>
+          </Link>
         </div>
       ))}
     </div>
