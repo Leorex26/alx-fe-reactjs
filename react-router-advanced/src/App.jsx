@@ -11,7 +11,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/blog/:id" element={<BlogPost />} />
 
-        {/* ✅ Protect Profile Route */}
+        {/* ✅ Protect Profile Route using ProtectedRoute */}
         <Route path="/profile/*" element={<ProtectedRoute element={<Profile />} />} />
       </Routes>
     </Router>
