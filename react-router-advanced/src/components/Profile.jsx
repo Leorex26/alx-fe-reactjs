@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom";
+import { Routes, Route, Link, Outlet } from "react-router-dom";
 import ProfileDetails from "./ProfileDetails";
 import ProfileSettings from "./ProfileSettings";
 
@@ -13,7 +13,13 @@ const Profile = () => {
         </ul>
       </nav>
 
-      {/* Render nested route components */}
+      {/* Define Nested Routes Inside Profile */}
+      <Routes>
+        <Route path="details" element={<ProfileDetails />} />
+        <Route path="settings" element={<ProfileSettings />} />
+      </Routes>
+
+      {/* Ensure <Outlet /> is used if routes are defined in App.jsx */}
       <Outlet />
     </div>
   );
