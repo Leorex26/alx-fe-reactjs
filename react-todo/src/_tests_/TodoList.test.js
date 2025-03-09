@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import TodoList from "../components/TodoList";
+import TodoList from "../../src/components/TodoList";
 
 test("renders TodoList component", () => {
   render(<TodoList />);
