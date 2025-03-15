@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import useRecipeStore from '../store/recipeStore';
+import useRecipeStore from './recipeStore';
 
 <nav>
   <Link to="/favorites">My Favorites</Link> |  
