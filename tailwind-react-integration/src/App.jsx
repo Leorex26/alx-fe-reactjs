@@ -26,7 +26,6 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">
-      <h1 className="text-3xl font-bold text-blue-500">Hello, Tailwind!</h1>
         Click on the Vite and React logos to learn more
       </p>
     </>
