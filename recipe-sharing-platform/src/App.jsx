@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import HomePage from "./components/HomePage";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,6 +13,11 @@ function App() {
       <h1 className="text-3xl font-bold">Recipe Sharing Platform</h1>
       <p>Tailwind CSS is working correctly!</p>
     </div>
+
+    <div className="bg-gray-100 min-h-screen">
+      <HomePage />
+    </div>
+    
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
