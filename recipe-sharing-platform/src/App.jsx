@@ -14,9 +14,10 @@ function App() {
       <p>Tailwind CSS is working correctly!</p>
     </div>
 
-    <div className="bg-gray-100 min-h-screen">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       <HomePage />
     </div>
+    
     
       <div>
         <a href="https://vite.dev" target="_blank">
