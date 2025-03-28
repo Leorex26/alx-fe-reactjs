@@ -24,38 +24,47 @@ export default function Search({ onSearch }) {
       }
     };
 
-  return (
-    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md mx-auto">
-      <h2 className="text-2xl font-bold text-center mb-4">GitHub User Search</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          placeholder="Username"
-          className="w-full p-2 border rounded-md"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Location"
-          className="w-full p-2 border rounded-md"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Min Repositories"
-          className="w-full p-2 border rounded-md"
-          value={repos}
-          onChange={(e) => setRepos(e.target.value)}
-        />
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
-        >
-          Search
-        </button>
-      </form>
-    </div>
-  );
-}
+    return (
+        <div className="p-6 bg-white rounded-md shadow-md max-w-md mx-auto">
+          <h2 className="text-xl font-bold text-center mb-4">GitHub User Search</h2>
+    
+          <form onSubmit={handleSearch} className="space-y-4">
+            <input
+              type="text"
+              placeholder="Enter GitHub Username"
+              className="w-full p-2 border rounded-md"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+    
+            <button
+              type="submit"
+              className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+              disabled={loading}
+            >
+              {loading ? "Loading..." : "Search"}
+            </button>
+          </form>
+    
+          {/* Display Error Message */}
+          {error && <p className="text-red-500 text-center mt-4">{error}</p>}
+    
+          {/* Display Users List */}
+          {users.length > 0 && (
+            <div className="mt-6">
+              {users.map((user) => (
+                <div key={user.id} className="p-4 border rounded-lg flex items-center space-x-4">
+                  <img src={user.avatar_url} alt="Avatar" className="w-16 h-16 rounded-full" />
+                  <div>
+                    <h3 className="text-lg font-bold">{user.login}</h3>
+                    <a href={user.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-500">
+                      View Profile
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
