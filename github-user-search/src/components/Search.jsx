@@ -17,7 +17,7 @@ const Search = () => {
       const data = await fetchUserData(username);
       setUser(data);
     } catch (err) {
-      setError("Looks like we can't find the user");
+      setError("Looks like we cant find the user");
     }
 
     setLoading(false);
@@ -42,7 +42,7 @@ const Search = () => {
       </form>
 
       {loading && <p>Loading...</p>}
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p className="text-red-500">Looks like we cant find the user</p>}
 
       {user && (
         <div className="border p-4 rounded-md">
