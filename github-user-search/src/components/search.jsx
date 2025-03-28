@@ -1,25 +1,28 @@
+// src/components/Search.jsx
 import { useState } from "react";
 
 const Search = ({ onSearch }) => {
-  const [query, setQuery] = useState("");
+  const [username, setUsername] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (query.trim()) {
-      onSearch(query);
+    if (username.trim()) {
+      onSearch(username);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Enter GitHub username..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
-      <button type="submit">Search</button>
-    </form>
+    <div className="search-container">
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Enter GitHub username..."
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+    </div>
   );
 };
 
