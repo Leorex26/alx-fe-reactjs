@@ -1,93 +1,47 @@
 import { useState } from "react";
-import { fetchUserData } from "../services/githubService";
 
-const Search = () => {
+export default function Search({ onSearch }) {
   const [username, setUsername] = useState("");
   const [location, setLocation] = useState("");
-  const [minRepos, setMinRepos] = useState("");
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [repos, setRepos] = useState("");
 
-  const handleSearch = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
-    setUsers([]);
-
-    try {
-      const data = await fetchUserData(username, location, minRepos);
-      if (data.length === 0) {
-        setError("Looks like we cant find the user");
-      } else {
-        setUsers(data);
-      }
-    } catch (err) {
-      setError("Error fetching data. Please try again.");
-    }
-
-    setLoading(false);
+    onSearch({ username, location, repos });
   };
 
   return (
-    <div className="p-4 max-w-xl mx-auto">
-      {/* Search Form */}
-      <form onSubmit={handleSearch} className="bg-white shadow-md p-4 rounded-lg">
+    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md mx-auto">
+      <h2 className="text-2xl font-bold text-center mb-4">GitHub User Search</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
-          placeholder="GitHub Username"
+          placeholder="Username"
+          className="w-full p-2 border rounded-md"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="p-2 border rounded-md w-full mb-2"
         />
         <input
           type="text"
           placeholder="Location"
+          className="w-full p-2 border rounded-md"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
-          className="p-2 border rounded-md w-full mb-2"
         />
         <input
           type="number"
-          placeholder="Min Repos"
-          value={minRepos}
-          onChange={(e) => setMinRepos(e.target.value)}
-          className="p-2 border rounded-md w-full mb-2"
+          placeholder="Min Repositories"
+          className="w-full p-2 border rounded-md"
+          value={repos}
+          onChange={(e) => setRepos(e.target.value)}
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md w-full"
+          className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
         >
           Search
         </button>
       </form>
-
-      {/* Loading/Error Messages */}
-      {loading && <p className="text-center mt-4">Loading...</p>}
-      {error && <p className="text-red-500 text-center mt-4">{error}</p>}
-
-      {/* Display Search Results */}
-      <div className="mt-4">
-        {users.map((user) => (
-          <div key={user.id} className="border p-4 rounded-md flex items-center gap-4 mb-2">
-            <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full" />
-            <div>
-              <h2 className="text-lg font-bold">{user.login}</h2>
-              <p>{user.location || "Location not available"}</p>
-              <a
-                href={user.html_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500"
-              >
-                View Profile
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
-};
-
-export default Search;
+}
