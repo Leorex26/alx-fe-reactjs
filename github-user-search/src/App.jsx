@@ -5,6 +5,8 @@ import './App.css'
 import axios from "axios";
 import SearchBar from "./components/SearchBar";
 import UserProfile from "./components/UserProfile";
+import { fetchUserData } from "./services/githubService";
+
 
 function App() {
   const [count, setCount] = useState(0)
