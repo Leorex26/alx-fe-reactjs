@@ -5,10 +5,14 @@ const BASE_URL = "https://api.github.com";
 // Fetch single user data
 export const fetchUserData = async (username) => {
   try {
+    let query = `q=${username}`;
+    if (location) query += `+location:${location}`;
+    if (minRepos) query += `+repos:>${minRepos}`;
+
     const response = await axios.get(`${BASE_URL}/users/${username}`);
     return response.data;
   } catch (error) {
-    throw new Error("User not found");
+    throw new Error("Failed to fetch users");
   }
 };
 
