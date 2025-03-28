@@ -1,6 +1,6 @@
 // src/App.jsx
 import { useState } from "react";
-import Search from "../components/Search";
+import Search from "./components/Search";
 import { fetchUserData } from "./services/githubService";
 
 const App = () => {
