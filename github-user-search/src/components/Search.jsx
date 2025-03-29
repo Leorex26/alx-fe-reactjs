@@ -17,7 +17,7 @@ const Search = () => {
     if (data && data.login) {
       setUserData(data);
     } else {
-      setError("Looks like we can't find the user.");
+      setError("Looks like we cant find the user"); // <-- Exact expected format
     }
     setLoading(false);
   };
@@ -37,7 +37,7 @@ const Search = () => {
 
       {/* Conditional Rendering */}
       {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}  {/* Ensure this displays the error message */}
+      {error && <p>{error}</p>}  {/* Ensure exact text matches */}
       {userData && (
         <div>
           <img src={userData.avatar_url} alt="User Avatar" width="100" />
@@ -55,4 +55,5 @@ const Search = () => {
 };
 
 export default Search;
+
 
