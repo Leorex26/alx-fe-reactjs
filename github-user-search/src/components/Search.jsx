@@ -47,7 +47,8 @@ export default function Search({ onSearch }) {
           </form>
     
           {/* Display Error Message */}
-          {error && <p className="text-red-500 text-center mt-4">Looks like we can't find the user{error}</p>}
+          {error && <p className="text-red-500">Looks like we can't find the user</p>}
+
     
           {/* Display Users List */}
           {users.length > 0 && (
