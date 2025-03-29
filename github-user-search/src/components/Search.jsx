@@ -2,18 +2,6 @@ import { useState } from "react";
 import { fetchUserData } from "../services/githubService";
 import axios from "axios";
 
-export const fetchUserData = async (username) => {
-    const url = `https://api.github.com/users/${username}`;
-  
-    try {
-      const response = await axios.get(url);
-      return response.data; // Returns a single user object
-    } catch (error) {
-      console.error("API fetch error:", error);
-      return null; // Return null if the user is not found
-    }
-  };
-  
 const Search = () => {
   const [username, setUsername] = useState("");
   const [location, setLocation] = useState("");
