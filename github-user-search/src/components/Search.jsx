@@ -13,20 +13,19 @@ const Search = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    onSearch({ username, location, repos });
     setLoading(true);
-    setError("");
+    setError(null);
     setUser(null);
-
+  
     try {
-        const usersData = await fetchUserData({ username, location, repos });
-        setUsers(usersData);
-      } catch (err) {
-        setError("Something went wrong. Please try again.");
-      } finally {
-        setLoading(false);
-      }
-    };
+      const data = await fetchUserData(username);
+      setUser(data);
+    } catch {
+      setError("Looks like we cant find the user");
+    } finally {
+      setLoading(false);
+    }
+  };
 
     return (
         <div className="p-6 bg-white rounded-md shadow-md max-w-md mx-auto">
