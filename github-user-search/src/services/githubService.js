@@ -1,6 +1,8 @@
 import axios from "axios";
 
 const BASE_URL = "https://api.github.com";
+const API_URL = "https://api.github.com/search/users?q";
+
 
 export const fetchUserData = async (username) => {
   try {
@@ -22,7 +24,7 @@ export const fetchAdvancedUsers = async (query, location, minRepos) => {
       searchQuery += ` repos:>${minRepos}`;
     }
 
-    const response = await axios.get(`${BASE_URL}/search/users?q=${searchQuery}`);
+    const response = await axios.get(`${API_URL}${query}`);
 
     return response.data.items; // GitHub returns users inside 'items' array
   } catch (error) {
