@@ -5,12 +5,12 @@ const Search = () => {
   const [username, setUsername] = useState("");
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   const handleSearch = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
+    setError("");
     setUserData(null);
 
     const data = await fetchUserData(username);
@@ -37,7 +37,7 @@ const Search = () => {
 
       {/* Conditional Rendering */}
       {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {error && <p>{error}</p>}  {/* Ensure this displays the error message */}
       {userData && (
         <div>
           <img src={userData.avatar_url} alt="User Avatar" width="100" />
@@ -55,3 +55,4 @@ const Search = () => {
 };
 
 export default Search;
+
