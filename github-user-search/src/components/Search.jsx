@@ -11,9 +11,10 @@ const Search = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setUserData(null);
 
     const data = await fetchUserData(username);
-    if (data) {
+    if (data && data.login) {
       setUserData(data);
     } else {
       setError("Looks like we can't find the user.");
@@ -41,6 +42,7 @@ const Search = () => {
         <div>
           <img src={userData.avatar_url} alt="User Avatar" width="100" />
           <h2>{userData.name || "No Name Available"}</h2>
+          <p>Username: {userData.login}</p>
           <p>
             <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
               View Profile
