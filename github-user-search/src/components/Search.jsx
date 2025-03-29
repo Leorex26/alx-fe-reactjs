@@ -1,18 +1,22 @@
 import { useState } from "react";
 import { fetchUserData } from "../services/githubService";
 
-export default function Search({ onSearch }) {
+
+const Search = () => {
   const [username, setUsername] = useState("");
+  const [user, setUser] = useState(null);
   const [location, setLocation] = useState("");
   const [repos, setRepos] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
 
-  const handleSubmit = async (e) => {
+
+  const handleSearch = async (e) => {
     e.preventDefault();
     onSearch({ username, location, repos });
     setLoading(true);
     setError("");
+    setUser(null);
 
     try {
         const usersData = await fetchUserData({ username, location, repos });

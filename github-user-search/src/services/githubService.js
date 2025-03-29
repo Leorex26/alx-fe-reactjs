@@ -4,7 +4,7 @@ const BASE_URL = "https://api.github.com";
 const API_URL = "https://api.github.com/search/users?q";
 
 
-export const fetchUserData = async (username) => {
+const fetchUserData = async (username) => {
   try {
     const response = await axios.get(`${BASE_URL}/users/${username}`);
     return response.data;
@@ -27,7 +27,9 @@ export const fetchAdvancedUsers = async (query, location, minRepos) => {
     const response = await axios.get(`${API_URL}${query}`);
 
     return response.data.items; // GitHub returns users inside 'items' array
-  } catch (error) {
+  } 
+  
+  catch (error) {
     throw new Error("Failed to fetch users");
   }
 };
