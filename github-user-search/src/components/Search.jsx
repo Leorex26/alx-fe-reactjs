@@ -1,25 +1,27 @@
 import { useState } from "react";
 import { fetchUserData } from "../services/githubService";
 import axios from "axios";
+import { fetchAdvancedUsers } from "../services/githubService";
 
-const Search = () => {
+const Search = (onSearch) => {
   const [username, setUsername] = useState("");
   const [location, setLocation] = useState("");
   const [minRepos, setMinRepos] = useState("");
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [page, setPage] = useState(1);
+  const [users, setUsers] = useState([]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
-    setUserData(null);
     setUsers([]);
     
 
     try {
+        onSearch()
         const data = await fetchAdvancedUsers(username, location, minRepos);
         if (data.length > 0) {
           setUsers(data);
@@ -50,6 +52,14 @@ const Search = () => {
             onChange={(e) => setLocation(e.target.value)}
             className="w-full p-2 border rounded"
           />
+
+        <input
+            type="text"
+            placeholder="githubUsername"
+            value={userData}
+            onChange={(e) => setUserData(e.target.value)}
+            className="w-full p-2 border rounded"
+          />
           <input
             type="number"
             placeholder="Min Repositories (optional)"
@@ -64,12 +74,20 @@ const Search = () => {
             Search
           </button>
         </form>
-  
+
+        <input
+            type="text"
+            placeholder="Location (optional)"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            className="w-full p-2 border rounded"
+          />
+          
         {loading && <p className="text-center text-gray-500 mt-4">Loading...</p>}
         {error && <p className="text-center text-red-500 mt-4">{error}</p>}
   
         <div className="mt-6">
-          {users.map((user) => (
+          {users.map((user) => (      
             <div key={user.id} className="p-4 bg-white shadow rounded-lg mb-4">
               <img
                 src={user.avatar_url}

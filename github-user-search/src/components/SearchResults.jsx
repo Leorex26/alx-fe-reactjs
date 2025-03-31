@@ -1,11 +1,11 @@
-import axios from "axios";
+import React from 'react'
 
-export const fetchUserData = async (username) => {
-  try {
-    const response = await axios.get(`https://api.github.com/users/${username}`);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching user:", error);
-    return null;
-  }
-};
+const SearchResults = (users) => {
+  return (
+    <div>
+        {users?.name}
+    </div>
+  )
+}
+
+export default SearchResults
